@@ -1,12 +1,14 @@
-// El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
+// Array para almacenar los nombres de los amigos
 let listaDeAmigos = [] ;
 
+//función para asignar texto a un elemento HTML
 function asignarTextoAUnElemento(element, text) {
     let elementHTML = document.querySelector(element);
     elementHTML.innerHTML = text;
     return;
 }
 
+//función para agregar un amigo a la lista
 function agregarAmigo() {
     let nombre = document.querySelector("#amigo").value;
     if (nombre.trim().length === 0) {
@@ -16,21 +18,21 @@ function agregarAmigo() {
     }
     else {
         listaDeAmigos.push(nombre);
-        console.log(listaDeAmigos);
         let contenedorLista = document.querySelector("#listaAmigos");    
         contenedorLista.innerHTML = listaDeAmigos
         .map(amigo => `<li>${amigo}</li>`)
         .join('')
-        condicionesIniciales();
+        limpiarInput();
     }
 }
 
-
-function condicionesIniciales() {
+//funcion para limpiar el input
+function limpiarInput() {
     document.querySelector("#amigo").value = "";
     return;
 }
 
+//función para validar si hay amigos en la lista
 function validarSiHayAmigos() {
     if (listaDeAmigos.length === 0) {
         alert("No hay amigos en la lista");
@@ -39,6 +41,8 @@ function validarSiHayAmigos() {
         return true;
     }
 }
+
+//función para sortear un amigo secreto
 function sortearAmigo() {
     if (validarSiHayAmigos() === true) {
     let amigoSorteado = listaDeAmigos[Math.floor(Math.random() * listaDeAmigos.length)];
@@ -48,6 +52,7 @@ function sortearAmigo() {
     document.querySelector('.button-draw').setAttribute('style', 'background-color: #adadadff; color: gray; cursor: not-allowed;');
 }
 
+//función para cambiar el color de fondo con transición al sortear el amigo secreto
 function colorFondoTransicion() {
     document.body.style.transition = "background-color 0.8s ease";
     document.body.style.backgroundColor = "#ff6730ff";
